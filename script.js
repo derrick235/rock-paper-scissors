@@ -44,17 +44,41 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (result === 'Win') {
-    console.log("You Win! " + playerSelection + " beats " + computerSelection);
+    playerScore++;
+    playerScoreNode.textContent = playerScore;
     return "You Win! " + playerSelection + " beats " + computerSelection;
   }
   else {
-    console.log("You Lose! " + computerSelection + " beats " + playerSelection);
+    computerScore++;
+    computerScoreNode.textContent = computerScore;
     return "You Lose! " + computerSelection + " beats " + playerSelection;
   }
 }
 
+function checkWinner() {
+  if (playerScore === 5) {
+    roundInfo.textContent += "\nYou won the game!";
+  }
+  else if (computerScore === 5) {
+    roundInfo.textContent += "\nYou lost the game. Try again!";
+  }
+  else {
+    return;
+  }
+}
+
 const playButtons = document.querySelectorAll(".play");
+let playerScore = 0;
+let computerScore = 0;
+const playerScoreNode = document.querySelector(".playerScore");
+const computerScoreNode = document.querySelector(".computerScore");
+const roundInfo = document.querySelector(".round")
+
 console.log(playButtons);
 playButtons.forEach((playButton) => {
-  playButton.addEventListener("click", () => {playRound(playButton.getAttribute("data-action"), getComputerChoice())});
+  playButton.addEventListener("click", () => {
+    const roundResult = playRound(playButton.getAttribute("data-action"), getComputerChoice());
+    roundInfo.textContent = roundResult;
+    checkWinner();
+  });
 })
