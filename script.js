@@ -44,32 +44,17 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (result === 'Win') {
+    console.log("You Win! " + playerSelection + " beats " + computerSelection);
     return "You Win! " + playerSelection + " beats " + computerSelection;
   }
   else {
+    console.log("You Lose! " + computerSelection + " beats " + playerSelection);
     return "You Lose! " + computerSelection + " beats " + playerSelection;
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  while (playerScore < 5 && computerScore < 5) {
-    let playerDecision = prompt("What will your move be?");
-    let result = playRound(playerDecision, getComputerChoice());
-    console.log(result);
-    if (result.slice(0, 7) === "You Win") {
-      playerScore++;
-    }
-    else if (result.slice(0, 8) === "You Lose") {
-      computerScore++;
-    }
-  }
-
-  if (playerScore === 5) {
-    console.log("You win the game! Congratulations!");
-  }
-  else {
-    console.log("You lost the game. Nice try!");
-  }
-}
+const playButtons = document.querySelectorAll(".play");
+console.log(playButtons);
+playButtons.forEach((playButton) => {
+  playButton.addEventListener("click", () => {playRound(playButton.getAttribute("data-action"), getComputerChoice())});
+})
