@@ -4,21 +4,43 @@
     <meta charset="utf-8">
     <title>Rock Paper Scissors</title>
     <script src = "./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700;900&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <div>
-      <h1>Rock Paper Scissors</h1>
+    <div class="heading">
+      <h1 class="title">Rock Paper Scissors</h1>
+      <p class="caption">Test your skills against a computer with 3 moves.</p>
     </div>
-    <div>
-      <button data-action = "Rock" class="play">🤛 Rock</button>
-      <button data-action = "Paper" class="play">🖐️ Paper</button>
-      <button data-action = "Scissors" class="play">✌️ Scissors</button>
+    <div class="your-move-front">
+      <div class="your-move">
+        <div class="move-heading">
+          <h2>Select a Move</h2>
+        </div>
+        <div class="move-selection">
+          <button data-action = "Rock" class="play">🤛</button>
+          <button data-action = "Paper" class="play">🖐️</button>
+          <button data-action = "Scissors" class="play">✌️</button>
+        </div>
+      </div>
     </div>
-    <div>
-      <h2 class="playerScore">0</h2>
-      <h2 class="computerScore">0</h2>
-      <h2 class="round"></h2>
+    <div class="scoreboard-front">
+      <div class="scoreboard">
+        <h2 class="scoreboard-title">Scoreboard</h2>
+        <div class="scores">
+          <h1 class="playerScore">0</h1>
+          <h1 class="dash">-</h1>
+          <h1 class="computerScore">0</h1>
+        </div>
+        <div class="players">
+          <h2>You</h2>
+          <h2>Computer</h2>
+        </div>
+        <h2 class="round"></h2>
+      </div>
     </div>
     <div class="reset">
     </div>
