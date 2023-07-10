@@ -16,9 +16,6 @@ function playRound(playerSelection, computerSelection) {
   computerSelection = computerSelection.slice(0, 1).toUpperCase() + computerSelection.slice(1).toLowerCase();
   let result;
 
-  const playerSelect2 = document.querySelector(".player-select");
-  const computerSelect2 = document.querySelector(".computer-select");
-
   if (playerSelection === computerSelection) {
     if (playerSelection === 'Rock') {
       playerSelect2.textContent = "🤛";
@@ -87,10 +84,10 @@ function playRound(playerSelection, computerSelection) {
 
 function checkWinner() {
   if (playerScore === 5) {
-    roundInfo.textContent += "\nYou won the game!";
+    finalResults.textContent += "\nYou won the game!";
   }
   else if (computerScore === 5) {
-    roundInfo.textContent += "\nYou lost the game. Try again!";
+    finalResults.textContent += "\nYou lost the game. Try again!";
   }
   else {
     return;
@@ -100,6 +97,7 @@ function checkWinner() {
   resetButton.textContent = "Play Again!";
   resetButton.addEventListener("mouseover", addButtonAnimation);
   resetButton.addEventListener("mouseout", removeButtonAnimation);
+  resetButton.addEventListener("click", resetGame);
   resetArea.appendChild(resetButton);
 }
 
@@ -111,6 +109,21 @@ function removeButtonAnimation() {
   this.classList.remove("play-effect");
 }
 
+function resetGame() {
+  playerScore = 0;
+  computerScore = 0;
+  rounds = 0;
+  resetArea.removeChild(this);
+  const roundNum2 = document.querySelector(".round-num");
+  roundNum2.textContent = "Round " + rounds;
+  playerScoreNode.textContent = playerScore;
+  computerScoreNode.textContent = computerScore;
+  finalResults.textContent = "";
+  roundInfo.textContent = "";
+  playerSelect2.textContent = "?";
+  computerSelect2.textContent = "?";
+}
+
 const playButtons = document.querySelectorAll(".play");
 let playerScore = 0;
 let computerScore = 0;
@@ -118,9 +131,12 @@ let rounds = 0;
 const playerScoreNode = document.querySelector(".playerScore");
 const computerScoreNode = document.querySelector(".computerScore");
 const roundInfo = document.querySelector(".round")
+const finalResults = document.querySelector(".final-results")
 const roundPlay = document.querySelector(".round-play");
 const roundAction = document.querySelector(".round-action");
 const resetArea = document.querySelector(".reset");
+const playerSelect2 = document.querySelector(".player-select");
+const computerSelect2 = document.querySelector(".computer-select");
 
 // ADD EVENT LISTENERS FOR BUTTONS
 playButtons.forEach((playButton) => {
@@ -131,4 +147,5 @@ playButtons.forEach((playButton) => {
   });
   playButton.addEventListener("mouseover", addButtonAnimation);
   playButton.addEventListener("mouseout", removeButtonAnimation);
-})
+});
+
